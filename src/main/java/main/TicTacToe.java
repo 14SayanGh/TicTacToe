@@ -5,23 +5,100 @@ import java.util.*;
 public class TicTacToe{
 public static int[][] ticbox;
 	public static int win(int [][]tic) {
-		//check all rows
-		//loop through rows from 0 to 3 and check if all the 3 places have same marks
- 		
+		int ele;
+		int row, col = 0;
+		boolean isEqual = true;
+		for(row = 0; row < 3; row++)
+		{
+			ele = tic[row][col];
+		    if(ele == 0)
+		    	continue;
+		    else
+		    {
+		    	isEqual = true;
+		    	for(col = 1;col < 3; col++ )
+		    	{
+		    		if(ele != tic[row][col])
+		    		{
+		    			isEqual = false;
+		    			break;
+		    		}
+		    	}
+		    	if(isEqual)
+		    		return ele;
+		    }
+		    		
+		}
+		row = 0;
+		isEqual = true;
+		for(col = 0; col < 3; col++ )
+		{
+			ele = tic[row][col];
+			if(ele == 0)
+				continue;
+			else
+			{
+				isEqual = true;
+				for(row = 1; row < 3; row++)
+				{
+					if(ele != tic[row][col])
+					{
+						isEqual = false;
+						break;
+					}
+				}
+				if(isEqual)
+					return ele;
+					
+			}
+		}
+		row = 0; col = 0;
+		isEqual = false;
 		
-		//check all cols
-		//loop through columns from 0 to 3 and check if all the 3 places have same marks
- 		
-		//check both diagonals 
+		ele = tic[row][col];
+		if(ele != 0)
+		{
+			isEqual = true;
+			row++;
+			col++;
+			while(row < 3 )
+			{
+				if(ele != tic[row][col])
+				{
+					isEqual = false;
+					break;
+				}
+				  row++;
+				  col++;
+			}
+		}
+		if(isEqual)
+			return ele;
+		row = 0; col = 2;
+		ele = tic[row][col];
+		if(ele != 0)
+		{
+			isEqual = true;
+			col--;
+			row++;
+			while(row < 3 && col >= 0)
+			{
+				if(ele != tic[row][col])
+				{
+					isEqual = false;
+					break;
+				}
+				row++;
+				col--;
+			}
 		
 		
-		
-		//write your code here !!!
-		
-		
+		}
+		if(isEqual)
+			return ele;
+		//}write your code here !!!
 		
 		return 0;
-		
 	}
 	
 	public static void printBox(int [][]tic) {
@@ -38,7 +115,8 @@ public static int[][] ticbox;
 		//check if the selected box is empty ie, already not marked by other player
 		//if all checks passed return true.
 		
-		
+		if((a1 >= 0 && a1 <= 2) && (a2 >= 0 && a2 <= 2) && tic[a1][a2] == 0)
+			 return true;
 		//Write your code here !!!
 		
 		
